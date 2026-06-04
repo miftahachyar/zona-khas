@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zona KHAS — Pendaftaran Zona Kuliner Halal, Aman &amp; Sehat</title>
+<style>
+  :root{
+    --green:#0d7a4f; --green-d:#0a5e3d; --green-l:#e7f4ee;
+    --gold:#c9a227; --ink:#16271f; --muted:#6b7c74;
+    --bg:#f4f7f5; --card:#ffffff; --border:#e2ebe6;
+    --red:#c0392b; --red-l:#fbeae8; --amber:#b9770a; --amber-l:#fdf3e2;
+    --shadow:0 1px 3px rgba(16,40,30,.06),0 8px 24px rgba(16,40,30,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.5;font-size:15px}
+  a{color:var(--green)}
+  /* Header */
+  header.top{background:linear-gradient(120deg,var(--green-d),var(--green));color:#fff;
+    padding:0;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(10,94,61,.25)}
+  .top-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:14px;
+    padding:12px 20px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:11px}
+  .logo .mark{width:40px;height:40px;border-radius:10px;background:#fff;color:var(--green-d);
+    display:grid;place-items:center;font-weight:800;font-size:17px;letter-spacing:-1px;flex:none}
+  .logo b{font-size:17px;display:block;line-height:1.1}
+  .logo span{font-size:11.5px;opacity:.85}
+  nav.tabs{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+  nav.tabs button{background:rgba(255,255,255,.1);color:#fff;border:0;padding:9px 15px;
+    border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s}
+  nav.tabs button:hover{background:rgba(255,255,255,.22)}
+  nav.tabs button.active{background:#fff;color:var(--green-d)}
+  main{max-width:1140px;margin:0 auto;padding:26px 20px 60px}
+  .view{display:none;animation:fade .25s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  /* Hero */
+  .hero{background:var(--card);border:1px solid var(--border);border-radius:18px;
+    padding:30px 32px;box-shadow:var(--shadow);margin-bottom:22px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;right:-60px;top:-60px;width:230px;height:230px;
+    background:radial-gradient(circle,var(--green-l),transparent 70%);border-radius:50%}
+  .herologo{position:absolute;right:28px;top:24px;width:104px;height:104px;z-index:2;
+    border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .hero h1{margin:0 0 8px;font-size:27px;letter-spacing:-.5px;max-width:640px}
+  .booksaku{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .booksaku .bk{width:62px;height:78px;border-radius:8px;flex:none;background:linear-gradient(135deg,#0d7a4f,#0a5e3d);
+    display:grid;place-items:center;color:#fff;font-size:30px;box-shadow:var(--shadow);position:relative}
+  .booksaku .bk:after{content:"";position:absolute;left:9px;top:0;bottom:0;width:3px;background:rgba(255,255,255,.25)}
+  .hero p{margin:0;max-width:680px;color:var(--muted);font-size:15px}
+  .hero .pill{display:inline-block;background:var(--green-l);color:var(--green-d);
+    font-weight:700;font-size:12px;padding:5px 12px;border-radius:20px;margin-bottom:14px}
+  .hero-cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:10px;cursor:pointer;
+    font-weight:700;font-size:14px;padding:11px 18px;transition:.15s;font-family:inherit}
+  .btn.primary{background:var(--green);color:#fff}
+  .btn.primary:hover{background:var(--green-d)}
+  .btn.ghost{background:var(--green-l);color:var(--green-d)}
+  .btn.ghost:hover{background:#d7ecdf}
+  .btn.outline{background:#fff;border:1.5px solid var(--border);color:var(--ink)}
+  .btn.sm{padding:7px 12px;font-size:12.5px;border-radius:8px}
+  .btn.danger{background:var(--red-l);color:var(--red)}
+  .btn.warn{background:var(--amber-l);color:var(--amber)}
+  /* Stat cards */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+  .stat .n{font-size:26px;font-weight:800;color:var(--green-d);letter-spacing:-1px}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  /* Cards / layout */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+  .card h2{margin:0 0 4px;font-size:19px}
+  .card .sub{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  label.fld{display:block;margin-bottom:14px}
+  label.fld .lt{display:block;font-weight:600;font-size:13.5px;margin-bottom:5px}
+  label.fld .req{color:var(--red)}
+  input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);
+    border-radius:9px;font-size:14px;font-family:inherit;background:#fcfdfc;transition:.15s}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:var(--green);background:#fff;
+    box-shadow:0 0 0 3px var(--green-l)}
+  textarea{resize:vertical;min-height:70px}
+  .hint{font-size:12px;color:var(--muted);margin-top:4px}
+  fieldset{border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;margin:0 0 18px}
+  legend{font-weight:700;font-size:14px;padding:0 8px;color:var(--green-d)}
+  /* Criteria checklist */
+  .crit{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border:1.5px solid var(--border);
+    border-radius:11px;margin-bottom:10px;background:#fcfdfc;transition:.15s}
+  .crit.on{border-color:var(--green);background:var(--green-l)}
+  .crit input[type=checkbox]{width:20px;height:20px;margin-top:1px;flex:none;accent-color:var(--green);cursor:pointer}
+  .crit .cb{font-weight:700;font-size:14px}
+  .crit .cd{font-size:12.5px;color:var(--muted);margin-top:2px}
+  /* Score panel */
+  .scorewrap{position:sticky;top:84px}
+  .gauge{text-align:center;padding:6px 0 4px}
+  .ring{--p:0;width:150px;height:150px;border-radius:50%;margin:6px auto 10px;
+    background:conic-gradient(var(--gc,var(--green)) calc(var(--p)*1%),#eef3f0 0);
+    display:grid;place-items:center;transition:.5s}
+  .ring .inner{width:118px;height:118px;background:var(--card);border-radius:50%;display:grid;place-items:center}
+  .ring .pct{font-size:32px;font-weight:800;color:var(--ink);letter-spacing:-1.5px}
+  .ring .pl{font-size:11px;color:var(--muted)}
+  .badge{display:inline-block;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px}
+  .badge.ok{background:var(--green-l);color:var(--green-d)}
+  .badge.mid{background:var(--amber-l);color:var(--amber)}
+  .badge.low{background:var(--red-l);color:var(--red)}
+  .checklist-mini{margin-top:14px;font-size:13px}
+  .checklist-mini div{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-top:1px dashed var(--border)}
+  .checklist-mini .ico{flex:none;font-weight:800;width:18px}
+  .ico.y{color:var(--green)}.ico.n{color:var(--red)}.ico.w{color:var(--amber)}
+  /* Table */
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:#fafcfb}
+  tbody tr:hover{background:#fafcfb}
+  .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:700}
+  .tag.baru{background:#e8eef6;color:#2c5d9c}
+  .tag.review{background:var(--amber-l);color:var(--amber)}
+  .tag.setuju{background:var(--green-l);color:var(--green-d)}
+  .tag.tolak{background:var(--red-l);color:var(--red)}
+  .tag.rampung{background:#ede7f6;color:#6a3fb5}
+  /* Existing list */
+  .zlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .zcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:15px 16px;box-shadow:var(--shadow)}
+  .zcard h4{margin:0 0 3px;font-size:15px}
+  .zcard .loc{font-size:12.5px;color:var(--muted)}
+  .zcard .meta{display:flex;justify-content:space-between;align-items:center;margin-top:11px;
+    padding-top:10px;border-top:1px solid var(--border);font-size:12px}
+  .zcard .cat{display:inline-block;background:var(--green-l);color:var(--green-d);font-weight:700;
+    font-size:10.5px;padding:3px 9px;border-radius:14px;margin-top:8px}
+  /* filter bar */
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .toolbar input,.toolbar select{width:auto;min-width:160px}
+  .empty{text-align:center;padding:46px 20px;color:var(--muted)}
+  .empty .big{font-size:40px;margin-bottom:8px}
+  /* modal */
+  .modal{position:fixed;inset:0;background:rgba(16,39,31,.5);display:none;place-items:center;z-index:100;padding:20px}
+  .modal.show{display:grid}
+  .modal .box{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .modal .mh{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .modal .mh h3{margin:0;font-size:18px}
+  .modal .mb{padding:20px 22px}
+  .modal .x{background:none;border:0;font-size:24px;cursor:pointer;color:var(--muted);line-height:1}
+  .kv{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;font-size:13.5px;margin-bottom:4px}
+  .kv dt{color:var(--muted)}
+  .kv dd{margin:0;font-weight:600}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+    background:var(--ink);color:#fff;padding:13px 22px;border-radius:11px;font-weight:600;font-size:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:200;opacity:0;transition:.3s}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+  .legend-steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .legend-steps .step{flex:1;min-width:130px;background:#fcfdfc;border:1px solid var(--border);
+    border-radius:11px;padding:11px 13px}
+  .legend-steps .step .sn{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;
+    display:grid;place-items:center;font-weight:800;font-size:12px;margin-bottom:7px}
+  .legend-steps .step b{font-size:13px;display:block}
+  .legend-steps .step small{color:var(--muted);font-size:11.5px}
+  .admin-gate{max-width:380px;margin:40px auto;text-align:center}
+  /* tracker */
+  .track-search{max-width:560px}
+  .track-search .row{display:flex;gap:10px}
+  .track-search input{flex:1;font-size:16px;letter-spacing:1px;text-transform:uppercase}
+  .timeline{margin-top:6px;position:relative;padding-left:6px}
+  .tstep{display:flex;gap:16px;position:relative;padding-bottom:26px}
+  .tstep:last-child{padding-bottom:0}
+  .tstep .dot{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+    font-weight:800;font-size:14px;z-index:2;background:#eef3f0;color:var(--muted);border:2px solid var(--border)}
+  .tstep .line{position:absolute;left:16px;top:34px;bottom:0;width:2px;background:var(--border);z-index:1}
+  .tstep:last-child .line{display:none}
+  .tstep.done .dot{background:var(--green);color:#fff;border-color:var(--green)}
+  .tstep.done .line{background:var(--green)}
+  .tstep.current .dot{background:#fff;color:var(--green-d);border-color:var(--green);
+    box-shadow:0 0 0 4px var(--green-l);animation:pulse 1.6s infinite}
+  .tstep.reject .dot{background:var(--red);color:#fff;border-color:var(--red)}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px var(--green-l)}50%{box-shadow:0 0 0 7px var(--green-l)}}
+  .tstep .tc{padding-top:4px}
+  .tstep .tc b{font-size:14.5px}
+  .tstep.pending .tc b{color:var(--muted);font-weight:600}
+  .tstep .tc .ts{font-size:12.5px;color:var(--muted)}
+  .tstep .tc .td{font-size:11.5px;color:var(--green-d);font-weight:700;margin-top:2px}
+  .track-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:var(--green-l);border-radius:13px;padding:15px 18px;margin-bottom:20px}
+  .track-head .big{font-size:21px;font-weight:800;color:var(--green-d);line-height:1.1}
+  .progbar{height:9px;background:#e6efe9;border-radius:6px;overflow:hidden;margin:14px 0 4px}
+  .progbar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold));transition:.6s}
+  /* documents */
+  input[type=file]{padding:8px 10px;background:#fcfdfc;font-size:13px;cursor:pointer}
+  input[type=file]::file-selector-button{margin-right:10px;border:0;background:var(--green-l);color:var(--green-d);
+    font-weight:700;padding:7px 12px;border-radius:7px;cursor:pointer;font-family:inherit}
+  .doc{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--border);
+    border-radius:10px;margin-bottom:8px;background:#fcfdfc}
+  .doc .dicon{font-size:20px;flex:none}
+  .doc .dmeta{flex:1;min-width:0}
+  .doc .dmeta b{font-size:13px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .doc .dmeta span{font-size:11.5px;color:var(--muted)}
+  .doc .dact{display:flex;gap:6px;flex:none;flex-wrap:wrap;justify-content:flex-end}
+  .vok{color:var(--green-d);font-weight:700}
+  .vno{color:var(--amber);font-weight:700}
+  .docbox{border:1.5px dashed var(--green);background:var(--green-l);border-radius:12px;padding:14px 16px;margin:6px 0 14px}
+  .dlbox{border:1px solid var(--gold);background:#fdf8e9;border-radius:12px;padding:14px 16px;margin:6px 0 14px}
+  .dlbox h4,.docbox h4{margin:0 0 8px;font-size:14px}
+  footer{max-width:1140px;margin:0 auto;padding:20px;color:var(--muted);font-size:12.5px;text-align:center;border-top:1px solid var(--border)}
+  @media(max-width:780px){
+    .stats{grid-template-columns:1fr 1fr}.grid2,.grid3{grid-template-columns:1fr}
+    .scorewrap{position:static}.kv{grid-template-columns:1fr}
+    .hide-sm{display:none}
+    .herologo{position:static;margin-bottom:14px;width:84px;height:84px;right:auto;top:auto}
+    .hero:before{display:none}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="logo">
+      <div class="mark">KHAS</div>
+      <div><b>Zona KHAS</b><span>Kuliner Halal, Aman &amp; Sehat</span></div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button data-v="beranda" class="active">Beranda</button>
+      <button data-v="daftar">Ajukan Zona</button>
+      <button data-v="lacak">Lacak Pengajuan</button>
+      <button data-v="direktori">Direktori Zona KHAS</button>
+      <button data-v="admin">Dashboard Admin</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ============ BERANDA ============ -->
+  <section id="beranda" class="view active">
+    <div class="hero">
+      <svg class="herologo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Zona KHAS">
+        <rect width="100" height="100" rx="14" fill="#080808"/>
+        <g transform="rotate(45 50 50)">
+          <rect x="20" y="20" width="60" height="60" fill="none" stroke="#3fae49" stroke-width="6"/>
+          <rect x="34" y="34" width="32" height="32" fill="none" stroke="#5cbf52" stroke-width="5"/>
+          <path d="M42 42 H58 M50 42 V58 M42 58 H58" stroke="#3fae49" stroke-width="5" fill="none" stroke-linecap="square"/>
+        </g>
+        <g fill="#d62828">
+          <rect x="44" y="2" width="12" height="12" transform="rotate(45 50 8)"/>
+          <rect x="86" y="44" width="12" height="12" transform="rotate(45 92 50)"/>
+          <rect x="44" y="86" width="12" height="12" transform="rotate(45 50 92)"/>
+          <rect x="2" y="44" width="12" height="12" transform="rotate(45 8 50)"/>
+        </g>
+      </svg>
+      <span class="pill">Program Prioritas KNEKS · Ekonomi &amp; Keuangan Syariah</span>
+      <h1>Daftarkan tempat kuliner Anda menjadi Zona KHAS</h1>
+      <p>Zona Kuliner Halal, Aman dan Sehat (Zona KHAS) adalah tempat di mana semua pihak bekerja sama
+      menyediakan makanan &amp; minuman yang <b>halal, sehat, aman,</b> dan lingkungan nyaman sesuai kaidah syariah.
+      Ajukan kawasan kuliner Anda, periksa kesiapannya terhadap 6 kriteria, dan pantau prosesnya di sini.</p>
+      <div class="hero-cta">
+        <button class="btn primary" onclick="go('daftar')">+ Ajukan Zona KHAS</button>
+        <button class="btn ghost" onclick="go('direktori')">Lihat Zona yang sudah diresmikan</button>
+      </div>
+    </div>
+
+    <div class="stats" id="homeStats"></div>
+
+    <div class="card booksaku">
+      <div class="bk">📘</div>
+      <div style="flex:1;min-width:220px">
+        <h2 style="margin:0 0 4px">Buku Saku Zona KHAS</h2>
+        <p class="sub" style="margin:0">Pedoman resmi Zona Kuliner Halal, Aman &amp; Sehat dari KNEKS — pengertian, kriteria, sarana-prasarana, hingga tahapan penetapan. Dapat diunduh gratis oleh publik.</p>
+      </div>
+      <a class="btn primary" href="Buku-Saku-Zona-KHAS.pdf" download="Buku Saku Zona KHAS.pdf">⬇ Unduh Buku Saku (PDF)</a>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h2>6 Kriteria Zona KHAS</h2>
+        <p class="sub">Syarat yang harus dipenuhi sebuah kawasan kuliner.</p>
+        <div id="critInfo"></div>
+      </div>
+      <div class="card">
+        <h2>Tahapan menuju penetapan</h2>
+        <p class="sub">Alur dari pengajuan hingga SK &amp; launching.</p>
+        <div class="legend-steps" id="stepInfo"></div>
+        <h2 style="margin-top:22px;font-size:16px">Ambang batas penetapan</h2>
+        <div class="checklist-mini" style="margin-top:8px">
+          <div><span class="ico y">≥</span><span><b>75%</b> tenant telah memiliki Sertifikasi Halal</span></div>
+          <div><span class="ico y">≥</span><span><b>90%</b> tenant telah memiliki Labelisasi Aman &amp; Sehat (SLHS/IKL)</span></div>
+          <div><span class="ico y">✓</span><span>Surat permohonan &amp; rekomendasi Zona KHAS dari inisiator</span></div>
+          <div><span class="ico y">✓</span><span>Rekomendasi Direktur BIWIS KNEKS &amp; SK Penetapan</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DAFTAR (FORM) ============ -->
+  <section id="daftar" class="view">
+    <div class="card" style="margin-bottom:18px">
+      <h2>Formulir Pengajuan Zona KHAS</h2>
+      <p class="sub">Lengkapi data kawasan kuliner Anda. Skor kesiapan di sebelah kanan akan terhitung otomatis
+      saat Anda mengisi. Tanda <span class="req">*</span> wajib diisi.</p>
+    </div>
+    <div class="grid2" style="grid-template-columns:1.55fr 1fr;align-items:start">
+      <div>
+        <form id="zForm">
+          <fieldset>
+            <legend>1 · Identitas Kawasan</legend>
+            <label class="fld"><span class="lt">Nama kawasan kuliner <span class="req">*</span></span>
+              <input name="nama" required placeholder="cth. Foodcourt Taman Sehati"></label>
+            <div class="grid2">
+              <label class="fld"><span class="lt">Kota / Kabupaten <span class="req">*</span></span>
+                <input name="kota" required placeholder="cth. Bandung"></label>
+              <label class="fld"><span class="lt">Provinsi <span class="req">*</span></span>
+                <select name="provinsi" required id="provSel"></select></label>
+            </div>
+            <label class="fld"><span class="lt">Alamat lengkap</span>
+              <textarea name="alamat" placeholder="Jalan, kelurahan, kecamatan, kode pos"></textarea></label>
+            <div class="grid2">
+              <label class="fld"><span class="lt">Basis / lokus kawasan <span class="req">*</span></span>
+                <select name="basis" required id="basisSel"></select></label>
+              <label class="fld"><span class="lt">Tipe kawasan <span class="req">*</span></span>
+                <select name="tipe" required id="tipeSel" onchange="recalc()">
+                  <option value="tertutup">Tertutup / khusus (min. 5 tenant)</option>
+                  <option value="terbuka">Terbuka (min. 10 tenant)</option>
+                </select></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>2 · Pengelola &amp; Kontak</legend>
+            <div class="grid2">
+              <label class="fld"><span class="lt">Nama pengelola / penanggung jawab <span class="req">*</span></span>
+                <input name="pic" required placeholder="Nama lengkap"></label>
+              <label class="fld"><span class="lt">No. WhatsApp / telepon <span class="req">*</span></span>
+                <input name="telp" required placeholder="08xx"></label>
+            </div>
+            <div class="grid2">
+              <label class="fld"><span class="lt">Email</span>
+                <input name="email" type="email" placeholder="nama@email.com"></label>
+              <label class="fld"><span class="lt">Instansi / pengelola</span>
+                <input name="instansi" placeholder="cth. DKM Masjid, Universitas, Pemkot"></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>3 · Data Tenant &amp; Sertifikasi</legend>
+            <div class="grid3">
+              <label class="fld"><span class="lt">Jumlah tenant / kedai <span class="req">*</span></span>
+                <input name="tenant" type="number" min="0" required value="0" oninput="recalc()"></label>
+              <label class="fld"><span class="lt">Tenant bersertifikat Halal</span>
+                <input name="halal" type="number" min="0" value="0" oninput="recalc()"></label>
+              <label class="fld"><span class="lt">Tenant ber-SLHS/IKL (Aman&amp;Sehat)</span>
+                <input name="sehat" type="number" min="0" value="0" oninput="recalc()"></label>
+            </div>
+            <p class="hint">SLHS = Sertifikat Laik Higiene Sanitasi · IKL = Inspeksi Kesehatan Lingkungan (dari Dinas Kesehatan).</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>4 · Checklist 6 Kriteria Zona KHAS</legend>
+            <p class="hint" style="margin-top:-2px">Centang kriteria yang sudah terpenuhi.</p>
+            <div id="critBoxes"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>5 · Dokumen Pendukung</legend>
+            <p class="hint" style="margin-top:-2px">Unggah bukti untuk diverifikasi KNEKS. Format PDF/JPG/PNG, maks. 2 MB per berkas. (Opsional saat pengajuan awal — bisa dilengkapi kemudian.)</p>
+            <div class="grid2">
+              <label class="fld"><span class="lt">Bukti Sertifikat Halal</span>
+                <input type="file" name="doc_halal" accept=".pdf,.jpg,.jpeg,.png"></label>
+              <label class="fld"><span class="lt">Bukti SLHS / IKL (Aman &amp; Sehat)</span>
+                <input type="file" name="doc_slhs" accept=".pdf,.jpg,.jpeg,.png"></label>
+            </div>
+            <label class="fld"><span class="lt">Dokumen pendukung lain (boleh lebih dari satu)</span>
+              <input type="file" name="doc_lain" accept=".pdf,.jpg,.jpeg,.png" multiple></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>6 · Catatan tambahan</legend>
+            <label class="fld"><span class="lt">Keterangan / kebutuhan pendampingan</span>
+              <textarea name="catatan" placeholder="cth. butuh fasilitasi sertifikasi halal untuk 4 tenant"></textarea></label>
+          </fieldset>
+
+          <button type="submit" class="btn primary" style="font-size:15px;padding:13px 26px">Kirim Pengajuan</button>
+          <button type="button" class="btn outline" onclick="document.getElementById('zForm').reset();recalc()">Reset</button>
+        </form>
+      </div>
+
+      <!-- Score panel -->
+      <div class="scorewrap">
+        <div class="card" style="text-align:center">
+          <h2 style="font-size:17px">Skor Kesiapan</h2>
+          <div class="gauge">
+            <div class="ring" id="ring"><div class="inner">
+              <div><div class="pct" id="pct">0%</div><div class="pl">kesiapan</div></div>
+            </div></div>
+            <div id="badge" class="badge low">Belum memenuhi</div>
+          </div>
+          <div class="checklist-mini" id="miniCheck" style="text-align:left"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LACAK ============ -->
+  <section id="lacak" class="view">
+    <div class="card track-search">
+      <h2>Lacak Status Pengajuan</h2>
+      <p class="sub">Masukkan kode pengajuan Anda (mis. <code>ZK1A2B3C</code>) untuk melihat sejauh mana prosesnya ditindaklanjuti KNEKS.</p>
+      <div class="row">
+        <input id="trackCode" placeholder="Masukkan kode pengajuan" onkeydown="if(event.key==='Enter')lacak()">
+        <button class="btn primary" onclick="lacak()">Lacak</button>
+      </div>
+      <p class="hint">Kode diberikan otomatis setelah Anda mengirim pengajuan di menu “Ajukan Zona”.</p>
+    </div>
+    <div id="trackResult"></div>
+  </section>
+
+  <!-- ============ DIREKTORI ============ -->
+  <section id="direktori" class="view">
+    <div class="card">
+      <h2>Direktori Zona KHAS</h2>
+      <p class="sub">Zona KHAS yang telah diresmikan &amp; rampung (2022–2025) sebagai referensi. Sumber: materi sosialisasi KNEKS.</p>
+      <div class="toolbar">
+        <input id="dirSearch" placeholder="🔍 Cari nama / kota..." oninput="renderDir()">
+        <select id="dirProv" onchange="renderDir()"></select>
+        <select id="dirYear" onchange="renderDir()">
+          <option value="">Semua tahun</option>
+          <option>2022</option><option>2023</option><option>2024</option><option>2025</option>
+        </select>
+        <span id="dirCount" style="margin-left:auto;color:var(--muted);font-size:13px"></span>
+      </div>
+      <div class="zlist" id="dirList"></div>
+    </div>
+  </section>
+
+  <!-- ============ ADMIN ============ -->
+  <section id="admin" class="view">
+    <div id="adminGate" class="card admin-gate">
+      <div style="font-size:38px;margin-bottom:6px">🔐</div>
+      <h2>Dashboard Admin</h2>
+      <p class="sub">Masukkan kata sandi untuk meninjau pengajuan.</p>
+      <input id="admPass" type="password" placeholder="Kata sandi" style="margin-bottom:12px" onkeydown="if(event.key==='Enter')admLogin()">
+      <button class="btn primary" onclick="admLogin()" style="width:100%">Masuk</button>
+      <p class="hint" style="margin-top:12px">Demo: <code>khas2024</code></p>
+    </div>
+
+    <div id="adminPanel" style="display:none">
+      <div class="stats" id="admStats"></div>
+      <div class="card">
+        <div class="toolbar">
+          <h2 style="margin:0;font-size:18px">Pengajuan Masuk</h2>
+          <select id="admFilter" onchange="renderAdmin()" style="margin-left:auto">
+            <option value="">Semua status</option>
+            <option value="Baru">Baru</option>
+            <option value="Review">Sedang ditinjau</option>
+            <option value="Disetujui">Disetujui</option>
+            <option value="Ditolak">Ditolak</option>
+          </select>
+          <button class="btn outline sm" onclick="exportCSV()">⬇ Ekspor CSV</button>
+          <button class="btn outline sm" onclick="seedDemo()">+ Data contoh</button>
+        </div>
+        <div id="admTableWrap"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Prototipe pendaftaran <b>Zona KHAS</b> — Zona Kuliner Halal, Aman &amp; Sehat.
+  Data tersimpan lokal di browser Anda (localStorage). Konsep mengacu pada materi sosialisasi KNEKS 2024–2025.
+</footer>
+
+<!-- detail modal -->
+<div class="modal" id="modal"><div class="box">
+  <div class="mh"><h3 id="mTitle">Detail</h3><button class="x" onclick="closeModal()">&times;</button></div>
+  <div class="mb" id="mBody"></div>
+</div></div>
+<!-- confirm modal -->
+<div class="modal" id="confirmModal"><div class="box" style="max-width:440px">
+  <div class="mh"><h3 id="cfTitle">Konfirmasi</h3><button class="x" onclick="closeConfirm()">&times;</button></div>
+  <div class="mb">
+    <p id="cfMsg" style="margin:0 0 20px;font-size:14.5px"></p>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn outline" onclick="closeConfirm()">Batal</button>
+      <button class="btn primary" id="cfYes">Ya, lanjutkan</button>
+    </div>
+  </div>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------- DATA ---------------- */
+const PROVINSI = ["Aceh","Sumatera Utara","Sumatera Barat","Riau","Kepulauan Riau","Jambi","Bengkulu",
+"Sumatera Selatan","Bangka Belitung","Lampung","Banten","DKI Jakarta","Jawa Barat","Jawa Tengah","DIY",
+"Jawa Timur","Bali","NTB","NTT","Kalimantan Barat","Kalimantan Tengah","Kalimantan Selatan",
+"Kalimantan Timur","Kalimantan Utara","Sulawesi Utara","Sulawesi Tengah","Sulawesi Selatan",
+"Sulawesi Tenggara","Gorontalo","Sulawesi Barat","Maluku","Maluku Utara","Papua","Papua Barat","Papua Barat Daya"];
+
+const BASIS = ["Masjid","Destinasi Wisata","Perkantoran","Sekolah","Perguruan Tinggi Negeri",
+"Perguruan Tinggi Swasta","Pesantren","Rumah Sakit","Fasilitas Umum (Bandara/Stasiun/Rest Area)","Pasar"];
+
+const KRITERIA = [
+ {t:"Area kuliner", d:"Area berhubungan dengan aktivitas memasak makanan/minuman & lingkungannya memenuhi kaidah halal, aman, sehat."},
+ {t:"Jumlah tenant", d:"Min. 5 kedai (kawasan tertutup/khusus) atau 10 kedai (kawasan terbuka)."},
+ {t:"Fasilitas ibadah", d:"Mushola/masjid dalam kawasan, berjarak maks. 500 meter."},
+ {t:"Dikelola profesional", d:"Dikelola secara profesional dengan prinsip manajemen syariah."},
+ {t:"Sertifikat Halal, Aman & Sehat", d:"Tenant memiliki Sertifikat Halal serta SLHS/IKL (Laik Higiene Sanitasi)."},
+ {t:"Sarana & prasarana", d:"Memiliki sarana-prasarana pendukung yang terletak di dalam kawasan Zona KHAS."}
+];
+
+const STEPS = [
+ {b:"Pendaftaran NIB", s:"Tenant memiliki Nomor Induk Berusaha"},
+ {b:"Pendampingan Halal", s:"Sosialisasi & sertifikasi halal via BPJPH"},
+ {b:"Pemeriksaan Aman-Sehat", s:"IKL/SLHS oleh Dinas Kesehatan"},
+ {b:"Rekomendasi", s:"Rekomendasi penetapan Zona KHAS"},
+ {b:"SK & Launching", s:"Penetapan dan peresmian Zona KHAS"}
+];
+
+/* Tahapan proses (untuk pelacakan status) */
+const STAGES=[
+ {b:"Pengajuan diterima", s:"Berkas pengajuan masuk ke sistem KNEKS"},
+ {b:"Verifikasi berkas", s:"Tim meninjau kelengkapan & kesiapan kawasan"},
+ {b:"Pendampingan & Sertifikasi Halal", s:"Fasilitasi sertifikasi halal tenant melalui BPJPH"},
+ {b:"Pemeriksaan Aman & Sehat", s:"Pemeriksaan IKL/SLHS oleh Dinas Kesehatan"},
+ {b:"Rekomendasi Penetapan", s:"Surat rekomendasi Zona KHAS diterbitkan"},
+ {b:"SK & Launching", s:"Penetapan SK dan peresmian Zona KHAS"}
+];
+
+/* Existing Zona KHAS (peresmian + rampung) */
+const EXISTING = [
+ {n:"Taman Valkenet Malabar",k:"Bandung",p:"Jawa Barat",y:2022,t:18,c:"Fasilitas Umum"},
+ {n:"Lego-lego",k:"Makassar",p:"Sulawesi Selatan",y:2023,t:36,c:"Destinasi Wisata"},
+ {n:"Kantin Utama ITS",k:"Surabaya",p:"Jawa Timur",y:2023,t:18,c:"Perguruan Tinggi"},
+ {n:"Soto Ayam Bok Ijo Tamanan",k:"Kediri",p:"Jawa Timur",y:2023,t:11,c:"Destinasi Wisata"},
+ {n:"Kantin Jawara BI",k:"Bandung",p:"Jawa Barat",y:2023,t:5,c:"Perkantoran"},
+ {n:"Riau Garden",k:"Pekanbaru",p:"Riau",y:2023,t:24,c:"Destinasi Wisata"},
+ {n:"Kantin Amanah RSAI",k:"Bandung",p:"Jawa Barat",y:2023,t:8,c:"Rumah Sakit"},
+ {n:"Masjid Istiqlal",k:"Jakarta Pusat",p:"DKI Jakarta",y:2023,t:24,c:"Masjid"},
+ {n:"Pasar Mambo",k:"Pangkal Pinang",p:"Bangka Belitung",y:2023,t:12,c:"Pasar"},
+ {n:"Pusat Kuliner Kampung Ujung",k:"Labuan Bajo",p:"NTT",y:2024,t:41,c:"Destinasi Wisata"},
+ {n:"Kantin SMAN 1 Slawi",k:"Tegal",p:"Jawa Tengah",y:2024,t:5,c:"Sekolah"},
+ {n:"Rest Area Lebeteng",k:"Tegal",p:"Jawa Tengah",y:2024,t:20,c:"Fasilitas Umum"},
+ {n:"Waduk Cacaban",k:"Tegal",p:"Jawa Tengah",y:2024,t:45,c:"Destinasi Wisata"},
+ {n:"Jangkar Sandar",k:"Manado",p:"Sulawesi Utara",y:2024,t:11,c:"Destinasi Wisata"},
+ {n:"Masjid Al-Alam",k:"Kendari",p:"Sulawesi Tenggara",y:2024,t:13,c:"Masjid"},
+ {n:"Masjid Agung Jawa Tengah",k:"Semarang",p:"Jawa Tengah",y:2024,t:54,c:"Masjid"},
+ {n:"Foodcourt UIN SUKA",k:"Sleman",p:"DIY",y:2024,t:8,c:"Perguruan Tinggi"},
+ {n:"Kantin Kampus UMP",k:"Purwokerto",p:"Jawa Tengah",y:2024,t:18,c:"Perguruan Tinggi"},
+ {n:"Solo Square",k:"Solo",p:"Jawa Tengah",y:2024,t:59,c:"Fasilitas Umum"},
+ {n:"Kediri Town Square",k:"Kediri",p:"Jawa Timur",y:2024,t:13,c:"Fasilitas Umum"},
+ {n:"Universitas Jenderal Soedirman",k:"Purwokerto",p:"Jawa Tengah",y:2024,t:39,c:"Perguruan Tinggi"},
+ {n:"Universitas Negeri Surabaya",k:"Surabaya",p:"Jawa Timur",y:2024,t:43,c:"Perguruan Tinggi"},
+ {n:"Universitas Negeri Jember",k:"Jember",p:"Jawa Timur",y:2024,t:7,c:"Perguruan Tinggi"},
+ {n:"RSUD Al Ihsan",k:"Kab. Bandung",p:"Jawa Barat",y:2024,t:20,c:"Rumah Sakit"},
+ {n:"Titik Juara UMKM",k:"Sukabumi",p:"Jawa Barat",y:2025,t:12,c:"Fasilitas Umum"},
+ {n:"Pasar PON Trenggalek",k:"Trenggalek",p:"Jawa Timur",y:2025,t:70,c:"Pasar"},
+ {n:"RSUZA",k:"Banda Aceh",p:"Aceh",y:2025,t:21,c:"Rumah Sakit"},
+ {n:"UIN Walisongo",k:"Semarang",p:"Jawa Tengah",y:2025,t:19,c:"Perguruan Tinggi"},
+ {n:"Kantin Kementerian Agama",k:"Jakarta Pusat",p:"DKI Jakarta",y:2025,t:12,c:"Perkantoran"},
+ {n:"Universitas Tirta Cilegon",k:"Serang",p:"Banten",y:2025,t:10,c:"Perguruan Tinggi"},
+ {n:"Ayani Megamall",k:"Pontianak",p:"Kalimantan Barat",y:2025,t:12,c:"Fasilitas Umum"},
+ {n:"Wisata Kuliner Gladak Serang",k:"Probolinggo",p:"Jawa Timur",y:2025,t:10,c:"Destinasi Wisata"},
+ {n:"Universitas Airlangga",k:"Surabaya",p:"Jawa Timur",y:2025,t:25,c:"Perguruan Tinggi"},
+ {n:"Taman Rinjani Selong",k:"Lombok Timur",p:"NTB",y:2025,t:12,c:"Destinasi Wisata"},
+ {n:"Sekolah Islam Athirah",k:"Makassar",p:"Sulawesi Selatan",y:2025,t:20,c:"Sekolah"},
+ {n:"Objek Wisata Danau Perintis",k:"Gorontalo",p:"Gorontalo",y:2025,t:10,c:"Destinasi Wisata"},
+ {n:"Univ Muhammadiyah Sorong",k:"Sorong",p:"Papua Barat Daya",y:2025,t:10,c:"Perguruan Tinggi"},
+ {n:"Kawasan Berendo Merah Putih",k:"Bengkulu",p:"Bengkulu",y:2025,t:30,c:"Fasilitas Umum"},
+ {n:"UIN Raden Intan",k:"Bandar Lampung",p:"Lampung",y:2025,t:24,c:"Perguruan Tinggi"},
+ {n:"IPB University",k:"Bogor",p:"Jawa Barat",y:2025,t:22,c:"Perguruan Tinggi"},
+ {n:"Rest Area Banjaratma",k:"Brebes",p:"Jawa Tengah",y:2024,t:52,c:"Fasilitas Umum"},
+ {n:"Pasar Lebak Budi",k:"Bandar Lampung",p:"Lampung",y:2025,t:53,c:"Pasar"},
+ {n:"Ponpes Sunan Drajat",k:"Lamongan",p:"Jawa Timur",y:2025,t:12,c:"Pesantren"},
+ {n:"SWK Dharma Husada",k:"Surabaya",p:"Jawa Timur",y:2025,t:32,c:"Fasilitas Umum"}
+];
+
+/* ---------------- STATE ---------------- */
+const LS='zonakhas_submissions_v1';
+let subs = JSON.parse(localStorage.getItem(LS)||'[]');
+function save(){ try{ localStorage.setItem(LS,JSON.stringify(subs)); return true; }
+  catch(e){ toast('⚠ Penyimpanan lokal penuh. Untuk demo gunakan file < 2 MB atau hapus pengajuan lama.'); return false; } }
+let isAdmin=false;
+
+/* ---------------- DOKUMEN ---------------- */
+const DOCSLOTS={
+  halal:{label:'Sertifikat Halal', by:'pemohon'},
+  slhs:{label:'SLHS / IKL (Aman & Sehat)', by:'pemohon'},
+  lain:{label:'Dokumen pendukung lain', by:'pemohon', multi:true},
+  surat_permohonan:{label:'Surat Resmi Permohonan Penetapan', by:'pemohon'},
+  surat_rekomendasi:{label:'Surat Rekomendasi Zona KHAS', by:'kneks'},
+  surat_penetapan:{label:'Surat Penetapan (SK) Zona KHAS', by:'kneks'},
+  sertifikat:{label:'Sertifikat Zona KHAS', by:'kneks'}
+};
+const MAXFILE=2*1024*1024;
+const fileToDataURL=f=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f)});
+function fmtSize(b){return b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB'}
+function docIcon(m){return (m||'').includes('pdf')?'📄':(m||'').startsWith('image')?'🖼️':'📎'}
+async function storeDoc(s,slot,file,by){
+  if(!s||!file) return false;
+  if(file.size>MAXFILE){ toast('✕ "'+file.name+'" melebihi 2 MB'); return false; }
+  let data; try{ data=await fileToDataURL(file); }catch(e){ toast('✕ Gagal membaca berkas'); return false; }
+  s.docs=s.docs||[];
+  const meta=DOCSLOTS[slot]||{};
+  if(!meta.multi) s.docs=s.docs.filter(d=>d.slot!==slot);
+  s.docs.push({id:'D'+Math.random().toString(36).slice(2,9),slot,by,name:file.name,mime:file.type,
+    size:file.size,data,tgl:new Date().toISOString(),verified:false});
+  return true;
+}
+function downloadDoc(subId,id){
+  const s=subs.find(x=>x.id===subId); const d=s&&(s.docs||[]).find(x=>x.id===id); if(!d)return;
+  const a=document.createElement('a'); a.href=d.data; a.download=d.name; a.click();
+}
+function removeDoc(subId,id){
+  const s=subs.find(x=>x.id===subId); if(!s)return;
+  s.docs=(s.docs||[]).filter(x=>x.id!==id); save();
+  if(document.getElementById('modal').classList.contains('show'))showDetail(s);
+  if(document.getElementById('lacak').classList.contains('active'))lacak();
+  renderAdmin();
+}
+function toggleVerify(subId,id){
+  const s=subs.find(x=>x.id===subId); const d=s&&(s.docs||[]).find(x=>x.id===id); if(!d)return;
+  d.verified=!d.verified; save(); showDetail(s); toast(d.verified?'Dokumen diverifikasi ✓':'Verifikasi dibatalkan');
+}
+async function lacakUpload(subId,slot,el){
+  const s=subs.find(x=>x.id===subId);
+  const ok=await storeDoc(s,slot,el.files[0],'pemohon');
+  if(ok){ save(); lacak(); toast(slot==='surat_permohonan'?'Berkas dipilih. Tekan “Submit ke KNEKS” untuk mengirim.':'✓ Dokumen terunggah'); }
+}
+function submitSurat(subId){
+  const s=subs.find(x=>x.id===subId);
+  const d=s&&(s.docs||[]).find(x=>x.slot==='surat_permohonan');
+  if(!d)return;
+  confirmDialog(
+    'Apakah Anda yakin ingin <b>mengirim Surat Resmi Permohonan</b> ini ke KNEKS?<br><br>Pastikan dokumen sudah benar dan final — surat akan diteruskan untuk proses penetapan.',
+    ()=>{ d.submitted=true; d.submittedTgl=new Date().toISOString();
+      logRiwayat(s,s.tahap,'Pemohon mengirim Surat Resmi Permohonan ke KNEKS');
+      save(); lacak(); toast('✓ Surat berhasil dikirim ke KNEKS'); },
+    {title:'Kirim Surat ke KNEKS', yes:'Ya, kirim surat'}
+  );
+}
+async function admUpload(subId,slot,el){
+  const s=subs.find(x=>x.id===subId);
+  const ok=await storeDoc(s,slot,el.files[0],'kneks');
+  if(ok){ if(slot==='surat_penetapan'||slot==='sertifikat')logRiwayat(s,s.tahap,DOCSLOTS[slot].label+' diterbitkan KNEKS');
+    save(); renderAdmin(); showDetail(s); toast('✓ Dokumen KNEKS terunggah'); }
+}
+function docRow(subId,d,opts){
+  opts=opts||{};
+  const ver = d.by==='pemohon' ? (d.verified?'<span class="vok">✓ Terverifikasi</span>':'<span class="vno">• Menunggu verifikasi</span>') : '';
+  return `<div class="doc"><span class="dicon">${docIcon(d.mime)}</span>
+    <div class="dmeta"><b>${esc(d.name)}</b><span>${(DOCSLOTS[d.slot]||{}).label||d.slot} · ${fmtSize(d.size)}${ver?' · '+ver:''}</span></div>
+    <div class="dact"><button class="btn outline sm" onclick="downloadDoc('${subId}','${d.id}')">⬇ Unduh</button>
+      ${opts.verify?`<button class="btn ${d.verified?'warn':'ghost'} sm" onclick="toggleVerify('${subId}','${d.id}')">${d.verified?'Batalkan':'Verifikasi'}</button>`:''}
+      ${opts.remove?`<button class="btn danger sm" onclick="removeDoc('${subId}','${d.id}')">Hapus</button>`:''}
+    </div></div>`;
+}
+/* migrasi data lama agar punya tahap & riwayat */
+subs.forEach(s=>{
+  if(s.tahap===undefined) s.tahap = ({Baru:0,Review:1,Disetujui:5,Ditolak:1}[s.status]) ?? 0;
+  if(!Array.isArray(s.riwayat)) s.riwayat=[{tahap:s.tahap,tgl:s.tgl||new Date().toISOString(),note:'Pengajuan diterima sistem'}];
+  if(!Array.isArray(s.docs)) s.docs=[];
+});
+
+/* ---------------- NAV ---------------- */
+function go(v){
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('active',s.id===v));
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('active',b.dataset.v===v));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(v==='direktori')renderDir();
+  if(v==='admin'&&isAdmin)renderAdmin();
+  if(v==='beranda')homeStats();
+  if(v==='lacak')document.getElementById('trackCode').focus();
+}
+document.getElementById('tabs').addEventListener('click',e=>{if(e.target.dataset.v)go(e.target.dataset.v)});
+
+/* ---------------- INIT UI ---------------- */
+function fillSelect(el,arr,ph){el.innerHTML=(ph?`<option value="">${ph}</option>`:'')+arr.map(x=>`<option>${x}</option>`).join('')}
+fillSelect(provSel,PROVINSI,'Pilih provinsi');
+fillSelect(basisSel,BASIS,'Pilih basis');
+fillSelect(dirProv,PROVINSI,'Semua provinsi');
+
+critInfo.innerHTML=KRITERIA.map((c,i)=>`<div class="crit"><div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;flex:none">${i+1}</div><div><div class="cb">${c.t}</div><div class="cd">${c.d}</div></div></div>`).join('');
+stepInfo.innerHTML=STEPS.map((s,i)=>`<div class="step"><div class="sn">${i+1}</div><b>${s.b}</b><small>${s.s}</small></div>`).join('');
+critBoxes.innerHTML=KRITERIA.map((c,i)=>`<label class="crit" id="cb${i}"><input type="checkbox" name="k${i}" onchange="this.closest('.crit').classList.toggle('on',this.checked);recalc()"><div><div class="cb">${c.t}</div><div class="cd">${c.d}</div></div></label>`).join('');
+
+/* ---------------- SCORING ---------------- */
+function scoreOf(d){
+  // weights: tenant 20, halal% 25, sehat% 20, ibadah 12, profesional 11, sarana 12 -> 100
+  const minT = d.tipe==='terbuka'?10:5;
+  const tenantOk = d.tenant>0 ? Math.min(1, d.tenant/minT) : 0;
+  const halalPct = d.tenant>0 ? d.halal/d.tenant : 0;
+  const sehatPct = d.tenant>0 ? d.sehat/d.tenant : 0;
+  const halalScore = Math.min(1, halalPct/0.75);   // target 75%
+  const sehatScore = Math.min(1, sehatPct/0.90);   // target 90%
+  const s = tenantOk*20 + halalScore*25 + sehatScore*20
+          + (d.k2?12:0) + (d.k3?11:0) + (d.k5?12:0);
+  return {pct:Math.round(s), minT, halalPct, sehatPct, tenantOk};
+}
+function readForm(){
+  const f=document.getElementById('zForm');
+  const g=n=>f.elements[n];
+  return {
+    tipe:g('tipe').value,
+    tenant:+g('tenant').value||0,
+    halal:+g('halal').value||0,
+    sehat:+g('sehat').value||0,
+    k0:g('k0').checked,k1:g('k1').checked,k2:g('k2').checked,
+    k3:g('k3').checked,k4:g('k4').checked,k5:g('k5').checked
+  };
+}
+function recalc(){
+  const d=readForm(); const r=scoreOf(d);
+  const ring=document.getElementById('ring');
+  ring.style.setProperty('--p',r.pct);
+  let col='var(--green)',cls='ok',lbl='Siap diajukan';
+  if(r.pct<55){col='var(--red)';cls='low';lbl='Belum memenuhi'}
+  else if(r.pct<80){col='var(--amber)';cls='mid';lbl='Perlu pembenahan'}
+  ring.style.setProperty('--gc',col);
+  document.getElementById('pct').textContent=r.pct+'%';
+  const b=document.getElementById('badge');b.className='badge '+cls;b.textContent=lbl;
+  const items=[
+    [d.tenant>=r.minT, `Jumlah tenant ${d.tenant}/${r.minT} (min)`],
+    [r.halalPct>=0.75, `Sertifikat Halal ${Math.round(r.halalPct*100)}% (target ≥75%)`],
+    [r.sehatPct>=0.90, `Aman & Sehat ${Math.round(r.sehatPct*100)}% (target ≥90%)`],
+    [d.k2, `Fasilitas ibadah ≤500 m`],
+    [d.k3, `Dikelola profesional (manajemen syariah)`],
+    [d.k5, `Sarana & prasarana dalam kawasan`]
+  ];
+  document.getElementById('miniCheck').innerHTML=items.map(([ok,t])=>
+    `<div><span class="ico ${ok?'y':'n'}">${ok?'✓':'✕'}</span><span>${t}</span></div>`).join('');
+}
+
+/* ---------------- SUBMIT ---------------- */
+document.getElementById('zForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!e.target.checkValidity()){e.target.reportValidity();return}
+  const f=e.target;
+  confirmDialog(
+    'Apakah Anda yakin ingin mengirim pengajuan ini?<br><br>Pastikan <b>semua isian sudah benar</b> dan <b>dokumen pendukung</b> (Sertifikat Halal, SLHS/IKL) telah dilampirkan dengan tepat. Data yang dikirim akan diverifikasi oleh tim KNEKS.',
+    ()=>submitForm(f),
+    {title:'Konfirmasi Pengajuan', yes:'Ya, kirim pengajuan'}
+  );
+});
+async function submitForm(f){
+  const fd=new FormData(f), o={};
+  fd.forEach((v,k)=>{ if(!k.startsWith('doc_')&&typeof v==='string') o[k]=v; });
+  const d=readForm(); const r=scoreOf(d);
+  const now=new Date().toISOString();
+  const rec={
+    id:'ZK'+Date.now().toString(36).toUpperCase(),
+    ...o,
+    tenant:+o.tenant||0, halal:+o.halal||0, sehat:+o.sehat||0,
+    kriteria:[0,1,2,3,4,5].map(i=>!!o['k'+i]),
+    skor:r.pct, status:'Baru', tahap:0, docs:[],
+    riwayat:[{tahap:0,tgl:now,note:'Pengajuan diterima sistem'}],
+    tgl:now
+  };
+  // kumpulkan dokumen
+  await storeDoc(rec,'halal',f.elements['doc_halal'].files[0],'pemohon');
+  await storeDoc(rec,'slhs',f.elements['doc_slhs'].files[0],'pemohon');
+  for(const file of f.elements['doc_lain'].files){ await storeDoc(rec,'lain',file,'pemohon'); }
+  subs.unshift(rec); save();
+  f.reset(); recalc(); homeStats();
+  showDetail(rec,true);
+  toast('✓ Pengajuan terkirim! Kode: '+rec.id);
+}
+
+/* ---------------- HOME STATS ---------------- */
+function homeStats(){
+  const totalExist=EXISTING.length;
+  const totalTenant=EXISTING.reduce((a,b)=>a+b.t,0)+subs.reduce((a,b)=>a+(+b.tenant||0),0);
+  const prov=new Set(EXISTING.map(e=>e.p)).size;
+  document.getElementById('homeStats').innerHTML=`
+    ${stat(totalExist,'Zona KHAS diresmikan')}
+    ${stat(prov,'Provinsi terjangkau')}
+    ${stat(totalTenant.toLocaleString('id'),'Total tenant terlibat')}
+    ${stat(subs.length,'Pengajuan di sistem ini')}`;
+}
+const stat=(n,l)=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`;
+
+/* ---------------- DIREKTORI ---------------- */
+function renderDir(){
+  const q=(dirSearch.value||'').toLowerCase(), p=dirProv.value, y=dirYear.value;
+  let rows=EXISTING.filter(e=>
+    (!q||e.n.toLowerCase().includes(q)||e.k.toLowerCase().includes(q)) &&
+    (!p||e.p===p) && (!y||e.y==y));
+  document.getElementById('dirCount').textContent=rows.length+' lokasi';
+  dirList.innerHTML = rows.length? rows.map(e=>`
+    <div class="zcard">
+      <h4>${e.n}</h4>
+      <div class="loc">📍 ${e.k}, ${e.p}</div>
+      <div class="cat">${e.c}</div>
+      <div class="meta"><span><b>${e.t}</b> tenant</span><span>Diresmikan ${e.y}</span></div>
+    </div>`).join('')
+    : `<div class="empty" style="grid-column:1/-1"><div class="big">🔍</div>Tidak ada hasil.</div>`;
+}
+
+/* ---------------- LACAK / TRACKING ---------------- */
+function lacak(){
+  const code=(document.getElementById('trackCode').value||'').trim().toUpperCase();
+  const box=document.getElementById('trackResult');
+  if(!code){box.innerHTML='';return}
+  const s=subs.find(x=>x.id===code);
+  if(!s){
+    box.innerHTML=`<div class="card"><div class="empty"><div class="big">🔎</div>
+      Kode <b>${esc(code)}</b> tidak ditemukan.<br><span style="font-size:13px">Pastikan kode sesuai yang Anda terima saat mengirim pengajuan.</span></div></div>`;
+    return;
+  }
+  box.innerHTML=trackCard(s);
+  const pb=box.querySelector('.progbar i'); if(pb){const w=pb.dataset.w;pb.style.width='0';requestAnimationFrame(()=>pb.style.width=w+'%')}
+}
+function trackCard(s){
+  const rejected=s.status==='Ditolak';
+  const pct=rejected?Math.round(s.tahap/(STAGES.length-1)*100):Math.round((s.tahap)/(STAGES.length-1)*100);
+  const lastUpd=s.riwayat&&s.riwayat.length?s.riwayat[s.riwayat.length-1]:{tgl:s.tgl};
+  const dateOf=i=>{const r=(s.riwayat||[]).filter(x=>x.tahap===i).pop();return r?fmtDate(r.tgl):''};
+  const steps=STAGES.map((st,i)=>{
+    let cls='pending';
+    if(rejected){ cls = i<s.tahap?'done': (i===s.tahap?'reject':'pending'); }
+    else { cls = i<s.tahap?'done' : (i===s.tahap?'current':'pending'); }
+    const d=dateOf(i);
+    const icon = cls==='done'?'✓' : cls==='reject'?'✕' : (i+1);
+    return `<div class="tstep ${cls}"><div class="dot">${icon}</div><div class="line"></div>
+      <div class="tc"><b>${st.b}</b><div class="ts">${st.s}</div>${d?`<div class="td">${d}</div>`:''}</div></div>`;
+  }).join('');
+  const statusLine = rejected
+    ? `<span class="tag tolak">Ditolak</span>`
+    : (s.tahap>=STAGES.length-1?`<span class="tag setuju">Selesai — Zona KHAS ditetapkan</span>`
+        : `<span class="tag review">Sedang diproses</span>`);
+  const riwayat=(s.riwayat||[]).slice().reverse().map(r=>
+    `<div><span class="ico ${r.tahap===s.tahap&&rejected?'n':'y'}">•</span><span><b>${STAGES[r.tahap]?STAGES[r.tahap].b:'-'}</b>${r.note?' — '+esc(r.note):''}<div style="font-size:11.5px;color:var(--muted)">${fmtDate(r.tgl)}</div></span></div>`).join('');
+  // dokumen — DITAMPILKAN SESUAI TAHAP SAAT INI
+  const kneksDocs=(s.docs||[]).filter(d=>d.by==='kneks');
+  const berkas=(s.docs||[]).filter(d=>['halal','slhs','lain'].includes(d.slot));
+  const surat=(s.docs||[]).find(d=>d.slot==='surat_permohonan');
+  let docSections='';
+  if(!rejected && s.tahap===4){
+    // Tahap 5 (Rekomendasi Penetapan): hanya tindakan upload surat resmi
+    let inner;
+    if(surat && surat.submitted){
+      inner = docRow(s.id,surat,{}) +
+        `<p class="hint" style="color:var(--green-d);font-weight:600;margin:8px 0 0">✓ Surat sudah dikirim ke KNEKS pada ${fmtDate(surat.submittedTgl)}. Menunggu proses penetapan.</p>`;
+    } else if(surat){
+      inner = docRow(s.id,surat,{remove:true}) +
+        `<div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap">
+           <button class="btn primary" onclick="submitSurat('${s.id}')">Submit ke KNEKS</button>
+           <span class="hint" style="margin:0">atau ganti berkas:</span>
+           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="lacakUpload('${s.id}','surat_permohonan',this)">
+         </div>`;
+    } else {
+      inner = `<input type="file" accept=".pdf,.jpg,.jpeg,.png" style="margin-top:8px" onchange="lacakUpload('${s.id}','surat_permohonan',this)">`;
+    }
+    docSections = `<div class="docbox"><h4>📤 Tindakan diperlukan: Surat Resmi Permohonan</h4>
+        <p class="hint" style="margin:0 0 10px">Pada tahap <b>Rekomendasi Penetapan</b>, KNEKS meminta surat resmi permohonan penetapan dari pihak pengaju. Unggah berkas (PDF/JPG/PNG, maks. 2 MB) lalu tekan <b>Submit ke KNEKS</b>.</p>
+        ${inner}</div>`;
+  } else if(!rejected && s.tahap>=5){
+    // Tahap 6 (SK & Launching): hanya unduhan dokumen final dari KNEKS
+    docSections = `<div class="dlbox"><h4>📥 Dokumen penetapan dari KNEKS — siap diunduh</h4>${
+      kneksDocs.length ? kneksDocs.map(d=>docRow(s.id,d,{})).join('')
+                       : '<p class="hint" style="margin:0">Menunggu KNEKS menerbitkan Surat Penetapan & Sertifikat Zona KHAS.</p>'}</div>`;
+  } else if(!rejected && berkas.length){
+    // Tahap awal/verifikasi: tampilkan berkas lampiran pemohon (read-only)
+    docSections = `<div style="margin-top:6px"><div class="lt" style="font-weight:700;margin:6px 0 8px">Berkas yang Anda lampirkan</div>${
+      berkas.map(d=>docRow(s.id,d,{})).join('')}<p class="hint" style="margin-top:6px">Berkas ini sedang/akan diverifikasi oleh KNEKS.</p></div>`;
+  }
+  return `<div class="card">
+    <div class="track-head">
+      <div style="flex:1;min-width:200px">
+        <div class="big">${esc(s.nama)}</div>
+        <div style="font-size:13px;color:var(--muted)">📍 ${esc(s.kota)}, ${esc(s.provinsi)} · Kode <b>${s.id}</b></div>
+      </div>
+      <div style="text-align:right">${statusLine}
+        <div style="font-size:11.5px;color:var(--muted);margin-top:4px">Pembaruan terakhir: ${fmtDate(lastUpd.tgl)}</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)">
+      <span>Progres proses</span><span><b style="color:var(--green-d)">${pct}%</b></span></div>
+    <div class="progbar"><i data-w="${pct}" style="width:${pct}%"></i></div>
+    ${rejected?`<p style="background:var(--red-l);color:var(--red);padding:11px 14px;border-radius:10px;font-weight:600;font-size:13.5px;margin:14px 0 4px">
+       Pengajuan ini belum dapat dilanjutkan. Silakan hubungi tim KNEKS untuk penjelasan & langkah perbaikan.</p>`:''}
+    <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:26px;margin-top:20px" class="grid2">
+      <div><div class="lt" style="font-weight:700;margin-bottom:12px">Tahapan proses</div>
+        <div class="timeline">${steps}</div></div>
+      <div><div class="lt" style="font-weight:700;margin-bottom:12px">Riwayat pembaruan</div>
+        <div class="checklist-mini" style="border:1px solid var(--border);border-radius:11px;padding:6px 14px">${riwayat}</div>
+        <p class="hint" style="margin-top:12px">Butuh bantuan? Sertakan kode <b>${s.id}</b> saat menghubungi pendamping KNEKS/KDEKS di daerah Anda.</p>
+      </div>
+    </div>
+    ${docSections}</div>`;
+}
+
+/* ---------------- ADMIN ---------------- */
+function admLogin(){
+  if(document.getElementById('admPass').value==='khas2024'){
+    isAdmin=true;
+    document.getElementById('adminGate').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+    renderAdmin();
+  }else toast('✕ Kata sandi salah');
+}
+function renderAdmin(){
+  const c={Baru:0,Review:0,Disetujui:0,Ditolak:0};
+  subs.forEach(s=>c[s.status]=(c[s.status]||0)+1);
+  document.getElementById('admStats').innerHTML=`
+    ${stat(subs.length,'Total pengajuan')}
+    ${stat(c.Baru+c.Review,'Menunggu tinjauan')}
+    ${stat(c.Disetujui,'Disetujui')}
+    ${stat(c.Ditolak,'Ditolak')}`;
+  const fl=document.getElementById('admFilter').value;
+  let rows=subs.filter(s=>!fl||s.status===fl);
+  const wrap=document.getElementById('admTableWrap');
+  if(!rows.length){wrap.innerHTML=`<div class="empty"><div class="big">📭</div>Belum ada pengajuan${fl?' dengan status '+fl:''}.</div>`;return}
+  wrap.innerHTML=`<div style="overflow-x:auto"><table><thead><tr>
+    <th>Kode</th><th>Kawasan</th><th class="hide-sm">Lokasi</th><th class="hide-sm">Basis</th>
+    <th>Skor</th><th>Status</th><th>Aksi</th></tr></thead><tbody>${
+    rows.map(s=>`<tr>
+      <td><code>${s.id}</code><div style="font-size:11px;color:var(--muted)">${fmtDate(s.tgl)}</div></td>
+      <td><b>${esc(s.nama)}</b><div style="font-size:11.5px;color:var(--muted)">${esc(s.pic||'')}</div></td>
+      <td class="hide-sm">${esc(s.kota||'')}, ${esc(s.provinsi||'')}</td>
+      <td class="hide-sm">${esc(s.basis||'')}</td>
+      <td><b style="color:${s.skor>=80?'var(--green)':s.skor>=55?'var(--amber)':'var(--red)'}">${s.skor}%</b></td>
+      <td><span class="tag ${statCls(s.status)}">${s.status}</span></td>
+      <td><button class="btn ghost sm" onclick="showDetail(subs.find(x=>x.id==='${s.id}'))">Tinjau</button></td>
+    </tr>`).join('')}</tbody></table></div>`;
+}
+const statCls=s=>({Baru:'baru',Review:'review',Disetujui:'setuju',Ditolak:'tolak'}[s]||'baru');
+
+/* ---------------- DETAIL MODAL ---------------- */
+function showDetail(s,isNew){
+  if(!s)return;
+  document.getElementById('mTitle').textContent=isNew?'Pengajuan Terkirim ✓':'Detail Pengajuan';
+  const critList=KRITERIA.map((c,i)=>`<div><span class="ico ${s.kriteria[i]?'y':'n'}">${s.kriteria[i]?'✓':'✕'}</span><span>${c.t}</span></div>`).join('');
+  const stageOpts=STAGES.map((st,i)=>`<option value="${i}" ${i===s.tahap?'selected':''}>${i+1}. ${st.b}</option>`).join('');
+  const adminCtrl = isAdmin && !isNew ? `
+    <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:16px">
+      <div class="lt" style="font-weight:700;margin-bottom:8px">Perbarui tahap proses</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:end">
+        <label class="fld" style="flex:1;min-width:200px;margin:0"><span class="lt" style="font-size:12px">Tahap saat ini</span>
+          <select id="stageSel">${stageOpts}</select></label>
+        <label class="fld" style="flex:1.4;min-width:200px;margin:0"><span class="lt" style="font-size:12px">Catatan (opsional)</span>
+          <input id="stageNote" placeholder="cth. 6 dari 8 tenant tersertifikasi halal"></label>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn primary sm" onclick="setTahap('${s.id}')">💾 Simpan tahap</button>
+        <button class="btn ghost sm" onclick="advTahap('${s.id}')">→ Majukan ke tahap berikutnya</button>
+        <button class="btn danger sm" onclick="setStatus('${s.id}','Ditolak')">Tolak pengajuan</button>
+        <button class="btn outline sm" onclick="delSub('${s.id}')" style="margin-left:auto">Hapus</button>
+      </div>
+      <p class="hint" style="margin-top:8px">Perubahan tahap langsung terlihat oleh pemohon di menu “Lacak Pengajuan”.</p>
+    </div>`:'';
+  const pDocs=(s.docs||[]).filter(d=>d.by==='pemohon');
+  const kDocs=(s.docs||[]).filter(d=>d.by==='kneks');
+  const admUploads = isAdmin&&!isNew?`
+    <div style="display:grid;gap:8px;margin-top:8px">
+      <label class="fld" style="margin:0"><span class="lt" style="font-size:12px">+ Unggah Surat Rekomendasi</span>
+        <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="admUpload('${s.id}','surat_rekomendasi',this)"></label>
+      <label class="fld" style="margin:0"><span class="lt" style="font-size:12px">+ Unggah Surat Penetapan (SK) Zona KHAS</span>
+        <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="admUpload('${s.id}','surat_penetapan',this)"></label>
+      <label class="fld" style="margin:0"><span class="lt" style="font-size:12px">+ Unggah Sertifikat Zona KHAS</span>
+        <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="admUpload('${s.id}','sertifikat',this)"></label>
+    </div>`:'';
+  const docView = `
+    <div class="lt" style="font-weight:700;margin:16px 0 6px">📎 Dokumen pemohon ${isAdmin?'(verifikasi)':''}</div>
+    ${pDocs.length?pDocs.map(d=>docRow(s.id,d,{verify:isAdmin})).join(''):'<p class="hint" style="margin:0">Belum ada dokumen dari pemohon.</p>'}
+    <div class="lt" style="font-weight:700;margin:16px 0 6px">📤 Dokumen dari KNEKS</div>
+    ${kDocs.length?kDocs.map(d=>docRow(s.id,d,{remove:isAdmin})).join(''):(isAdmin?'':'<p class="hint" style="margin:0">Belum ada dokumen diterbitkan.</p>')}
+    ${admUploads}`;
+  document.getElementById('mBody').innerHTML=`
+    ${isNew?`<p style="background:var(--green-l);color:var(--green-d);padding:12px 14px;border-radius:10px;font-weight:600">
+       Terima kasih! Pengajuan Anda tersimpan dengan kode <b>${s.id}</b>. Simpan kode ini — gunakan di menu
+       <b>“Lacak Pengajuan”</b> untuk memantau progresnya.
+       <button class="btn ghost sm" style="margin-top:10px" onclick="closeModal();document.getElementById('trackCode').value='${s.id}';go('lacak');lacak()">Lacak sekarang →</button></p>`:''}
+    <div style="display:flex;align-items:center;gap:14px;margin:6px 0 16px">
+      <div class="ring" style="width:84px;height:84px;--p:${s.skor};--gc:${s.skor>=80?'var(--green)':s.skor>=55?'var(--amber)':'var(--red)'}">
+        <div class="inner" style="width:62px;height:62px"><b style="font-size:18px">${s.skor}%</b></div></div>
+      <div><span class="tag ${statCls(s.status)}">${s.status}</span>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Kode ${s.id}</div></div>
+    </div>
+    <dl class="kv">
+      <dt>Kawasan</dt><dd>${esc(s.nama)}</dd>
+      <dt>Lokasi</dt><dd>${esc(s.kota)}, ${esc(s.provinsi)}</dd>
+      <dt>Basis / lokus</dt><dd>${esc(s.basis||'-')}</dd>
+      <dt>Tipe</dt><dd>${s.tipe==='terbuka'?'Terbuka (min.10)':'Tertutup (min.5)'}</dd>
+      <dt>Pengelola</dt><dd>${esc(s.pic||'-')} · ${esc(s.telp||'-')}</dd>
+      <dt>Instansi</dt><dd>${esc(s.instansi||'-')}</dd>
+      <dt>Tenant</dt><dd>${s.tenant} total · ${s.halal} halal · ${s.sehat} aman-sehat</dd>
+      ${s.catatan?`<dt>Catatan</dt><dd>${esc(s.catatan)}</dd>`:''}
+    </dl>
+    <div class="lt" style="font-weight:700;margin:14px 0 6px">Checklist kriteria</div>
+    <div class="checklist-mini">${critList}</div>
+    ${docView}
+    ${adminCtrl}`;
+  document.getElementById('modal').classList.add('show');
+}
+/* reusable confirm dialog */
+let _cfCb=null;
+function confirmDialog(msg,onYes,opts){opts=opts||{};
+  document.getElementById('cfTitle').textContent=opts.title||'Konfirmasi';
+  document.getElementById('cfMsg').innerHTML=msg;
+  const y=document.getElementById('cfYes');
+  y.textContent=opts.yes||'Ya, lanjutkan';
+  y.className='btn '+(opts.danger?'danger':'primary');
+  _cfCb=onYes;
+  document.getElementById('confirmModal').classList.add('show');
+}
+function closeConfirm(){document.getElementById('confirmModal').classList.remove('show');_cfCb=null}
+document.getElementById('cfYes').onclick=()=>{const cb=_cfCb;closeConfirm();if(cb)cb()};
+document.getElementById('confirmModal').addEventListener('click',e=>{if(e.target.id==='confirmModal')closeConfirm()});
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+function statusFromTahap(t){return t<=0?'Baru':t>=STAGES.length-1?'Disetujui':'Review'}
+function logRiwayat(s,tahap,note){s.riwayat=s.riwayat||[];s.riwayat.push({tahap,tgl:new Date().toISOString(),note:note||''})}
+function setStatus(id,st){
+  const s=subs.find(x=>x.id===id);if(!s)return;
+  s.status=st;
+  if(st==='Ditolak'){logRiwayat(s,s.tahap,'Pengajuan ditolak')}
+  save();renderAdmin();closeModal();toast('Status → '+st)
+}
+function applyTahap(id,t,note){
+  const s=subs.find(x=>x.id===id);if(!s)return;
+  t=Math.max(0,Math.min(STAGES.length-1,t));
+  if(t!==s.tahap||note){s.tahap=t;s.status=statusFromTahap(t);logRiwayat(s,t,note||STAGES[t].b)}
+  save();renderAdmin();homeStats();closeModal();
+  toast('Tahap diperbarui: '+STAGES[t].b);
+}
+function setTahap(id){
+  const t=+document.getElementById('stageSel').value;
+  const note=document.getElementById('stageNote').value.trim();
+  applyTahap(id,t,note);
+}
+function advTahap(id){
+  const s=subs.find(x=>x.id===id);if(!s)return;
+  const note=(document.getElementById('stageNote')||{}).value||'';
+  applyTahap(id,s.tahap+1,note.trim());
+}
+function delSub(id){
+  confirmDialog('Hapus pengajuan ini secara permanen? Semua dokumen terkait juga akan terhapus.',
+    ()=>{subs=subs.filter(x=>x.id!==id);save();renderAdmin();homeStats();closeModal();toast('Pengajuan dihapus')},
+    {title:'Hapus Pengajuan', yes:'Ya, hapus', danger:true});
+}
+
+/* ---------------- UTIL ---------------- */
+function esc(s){return(s==null?'':''+s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function fmtDate(iso){const d=new Date(iso);return d.toLocaleDateString('id',{day:'2-digit',month:'short',year:'numeric'})+' '+d.toLocaleTimeString('id',{hour:'2-digit',minute:'2-digit'})}
+let toastT;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600)}
+function exportCSV(){
+  if(!subs.length){toast('Belum ada data');return}
+  const head=['Kode','Kawasan','Kota','Provinsi','Basis','Tipe','Pengelola','Telp','Email','Tenant','Halal','AmanSehat','Skor','Status','Tanggal'];
+  const rows=subs.map(s=>[s.id,s.nama,s.kota,s.provinsi,s.basis,s.tipe,s.pic,s.telp,s.email,s.tenant,s.halal,s.sehat,s.skor+'%',s.status,fmtDate(s.tgl)]);
+  const csv=[head,...rows].map(r=>r.map(c=>`"${(c==null?'':''+c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));
+  a.download='pengajuan-zona-khas.csv';a.click();toast('CSV diunduh')
+}
+function seedDemo(){
+  const demo=[
+    {nama:'Foodcourt Taman Sehati',kota:'Bandung',provinsi:'Jawa Barat',basis:'Perkantoran',tipe:'tertutup',pic:'Budi Santoso',telp:'08123456789',email:'budi@email.com',instansi:'Pemkot Bandung',tenant:8,halal:7,sehat:8,catatan:'Butuh fasilitasi 1 tenant',kriteria:[true,true,true,true,false,true]},
+    {nama:'Pujasera Alun-Alun',kota:'Sidoarjo',provinsi:'Jawa Timur',basis:'Destinasi Wisata',tipe:'terbuka',pic:'Siti Aminah',telp:'08987654321',email:'',instansi:'Disparbud',tenant:14,halal:6,sehat:9,catatan:'',kriteria:[true,true,false,true,false,true]}
+  ];
+  const tahaps=[3,1];
+  demo.forEach((d,idx)=>{const r=scoreOf({tipe:d.tipe,tenant:d.tenant,halal:d.halal,sehat:d.sehat,k2:d.kriteria[2],k3:d.kriteria[3],k5:d.kriteria[5]});
+    const th=tahaps[idx],now=new Date();
+    const riwayat=[];for(let i=0;i<=th;i++){const dt=new Date(now-(th-i)*86400000*4);riwayat.push({tahap:i,tgl:dt.toISOString(),note:STAGES[i].b})}
+    subs.unshift({id:'ZK'+Math.random().toString(36).slice(2,8).toUpperCase(),...d,skor:r.pct,tahap:th,status:statusFromTahap(th),riwayat,tgl:riwayat[0].tgl})});
+  save();renderAdmin();homeStats();toast('2 data contoh ditambahkan')
+}
+
+/* ---------------- BOOT ---------------- */
+homeStats(); recalc(); renderDir();
+</script>
+</body>
+</html>
